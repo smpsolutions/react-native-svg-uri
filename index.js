@@ -170,7 +170,7 @@ class SvgUri extends Component{
       style = node.firstChild.data.split(".").map(x => x.replace(";}", "").split("{"));
       style.forEach(element => {
         console.log(element)
-          lement && element[0] !== "" ? styleDict[element[0]] = element[1] : null
+          element && element[0] !== "" ? styleDict[element[0]] = element[1] : null
       });
       console.log("STYLE", styleDict)
     case 'svg':

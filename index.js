@@ -38,7 +38,8 @@ const ACCEPTED_SVG_ELEMENTS = [
   'polygon',
   'polyline',
   'text',
-  'tspan'
+  'tspan', 
+  'style'
 ];
 
 // Attributes from SVG elements that are mapped directly.
@@ -160,6 +161,8 @@ class SvgUri extends Component{
   createSVGElement(node, childs){
     this.trimElementChilden(childs);
     let componentAtts = {};
+
+    console.log("COMP", componentAtts)
     const i = ind++;
     switch (node.nodeName) {
     case 'svg':

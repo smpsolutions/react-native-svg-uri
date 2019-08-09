@@ -185,13 +185,11 @@ class SvgUri extends Component{
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, styleDict, G_ATTS);
-      console.log("NODE", node)
       console.log("COMP", componentAtts)
 
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, styleDict, PATH_ATTS);
-      console.log("NODE", node)
       console.log("COMP", componentAtts)
 
       return <Path key={i} {...componentAtts}>{childs}</Path>;
@@ -246,12 +244,16 @@ class SvgUri extends Component{
     }
 
     Array.from(attributes).forEach(({nodeName, nodeValue}) => {
+      console.log("NODENAME:", nodeName, "Must be class")
       if (nodeName === 'class'){
+        console.log("NODEVALUE", nodeValue, "Must be className")
         if(nodeValue in styleDict){
+          console.log("HELLO I'm Assigning!")
           Object.assign(externalStyleAtts, {
             fill: "\"" + styleDict[nodeValue] + "\""
           })
         }
+        console.log("ExternalStyleAtts:", externalStyleAtts)
       }
       Object.assign(styleAtts, utils.transformStyle({
         nodeName,

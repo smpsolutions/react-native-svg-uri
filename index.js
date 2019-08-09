@@ -243,15 +243,12 @@ class SvgUri extends Component{
       styleAtts.fill = this.state.fill;
     }
     
-    console.log("STYLEDICT", styleDict)
     Array.from(attributes).forEach(({nodeName, nodeValue}) => {
       console.log("NODENAME:", nodeName, "Must be class")
       if (nodeName === 'class'){
-        console.log("NODEVALUE", nodeValue, "Must be className")
         if(styleDict[nodeValue]){
-          console.log("HELLO I'm Assigning!")
           Object.assign(externalStyleAtts, {
-            fill: "\"" + styleDict[nodeValue] + "\""
+            fill: styleDict[nodeValue]
           })
         }
         console.log("ExternalStyleAtts:", externalStyleAtts)

@@ -249,7 +249,7 @@ class SvgUri extends Component{
       if (nodeName === 'class'){
         if(nodeValue in styleDict){
           Object.assign(externalStyleAtts, {
-            fill: styleDict[nodeValue] 
+            fill: "\"" + styleDict[nodeValue] + "\""
           })
         }
       }

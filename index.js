@@ -105,8 +105,6 @@ class SvgUri extends Component{
   }
 
   componentWillReceiveProps (nextProps){
-    console.log("HI DU")
-
     if (nextProps.source) {
       const source = resolveAssetSource(nextProps.source) || {};
       const oldSource = resolveAssetSource(this.props.source) || {};
@@ -169,10 +167,8 @@ class SvgUri extends Component{
     case 'style': 
       style = node.firstChild.data.split(".").map(x => x.replace(";}", "").replace("fill:","").split("{"));
       style.forEach(element => {
-        console.log(element)
           element && element[0] !== "" ? styleDict[element[0]] = element[1] : null
       });
-      console.log("STYLE", styleDict)
       return null
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, styleDict, SVG_ATTS);
@@ -186,13 +182,10 @@ class SvgUri extends Component{
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, styleDict, G_ATTS);
-      console.log("COMP", componentAtts)
 
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, styleDict, PATH_ATTS);
-      console.log("COMP", componentAtts)
-      console.log(<Path key={i} {...componentAtts}>{childs}</Path>)
       return <Path key={i} {...componentAtts}>{childs}</Path>;
     case 'circle':
       componentAtts = this.obtainComponentAtts(node, styleDict, CIRCLE_ATTS);
@@ -245,15 +238,12 @@ class SvgUri extends Component{
     }
     
     Array.from(attributes).forEach(({nodeName, nodeValue}) => {
-      console.log("NODENAME:", nodeName, "Must be class")
       if (nodeName === 'class'){
         if(styleDict[nodeValue]){
-          console.log("ASSIGNING")
           Object.assign(styleAtts, {
             fill: styleDict[nodeValue]
           })
         }
-        console.log("ExternalStyleAtts:", externalStyleAtts)
       }
 
       Object.assign(styleAtts, utils.transformStyle({

@@ -167,7 +167,7 @@ class SvgUri extends Component{
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 
-      style = node.firstChild.data.map(x => x.replace("}", "").split("{"));
+      style = node.firstChild.data.map(x => x.replace(";}", "").split("{"));
       style.forEach(element => {
         console.log(element)
           lement && element[0] !== "" ? styleDict[element[0]] = element[1] : null

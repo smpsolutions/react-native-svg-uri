@@ -249,12 +249,13 @@ class SvgUri extends Component{
       if (nodeName === 'class'){
         if(styleDict[nodeValue]){
           console.log("ASSIGNING")
-          Object.assign(externalStyleAtts, {
+          Object.assign(styleAtts, {
             fill: styleDict[nodeValue]
           })
         }
         console.log("ExternalStyleAtts:", externalStyleAtts)
       }
+      
       Object.assign(styleAtts, utils.transformStyle({
         nodeName,
         nodeValue,
@@ -270,10 +271,8 @@ class SvgUri extends Component{
         acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
         return acc
       }, {});
-    if( externalStyleAtts === {}) {
-      console.log("feeeck")
-    }
-    Object.assign(componentAtts, styleAtts, externalStyleAtts);
+
+    Object.assign(componentAtts, styleAtts);
 
     return componentAtts;
   }

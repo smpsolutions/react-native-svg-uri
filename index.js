@@ -191,7 +191,7 @@ class SvgUri extends Component{
     case 'path':
       componentAtts = this.obtainComponentAtts(node, styleDict, PATH_ATTS);
       console.log("COMP", componentAtts)
-
+      console.log(<Path key={i} {...componentAtts}>{childs}</Path>)
       return <Path key={i} {...componentAtts}>{childs}</Path>;
     case 'circle':
       componentAtts = this.obtainComponentAtts(node, styleDict, CIRCLE_ATTS);

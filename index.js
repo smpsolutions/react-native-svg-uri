@@ -45,7 +45,7 @@ const ACCEPTED_SVG_ELEMENTS = [
 // Attributes from SVG elements that are mapped directly.
 const SVG_ATTS = ['viewBox', 'width', 'height'];
 const G_ATTS = ['id'];
-
+const STYLE_ATTS = ['fill', 'className']
 const CIRCLE_ATTS = ['cx', 'cy', 'r'];
 const PATH_ATTS = ['d'];
 const RECT_ATTS = ['width', 'height'];
@@ -163,9 +163,12 @@ class SvgUri extends Component{
   createSVGElement(node, childs){
     this.trimElementChilden(childs);
     let componentAtts = {};
-
+    let style = {}
     const i = ind++;
     switch (node.nodeName) {
+    case 'style': 
+      style = this.obtainComponentAtts(node, STYLE_ATTS)
+      console.log("STYLE", style)
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, SVG_ATTS);
       if (this.props.width) {
@@ -178,11 +181,13 @@ class SvgUri extends Component{
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, G_ATTS);
+      console.log("NODE", node)
       console.log("COMP", componentAtts)
 
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, PATH_ATTS);
+      console.log("NODE", node)
       console.log("COMP", componentAtts)
 
       return <Path key={i} {...componentAtts}>{childs}</Path>;

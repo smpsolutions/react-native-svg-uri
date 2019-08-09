@@ -105,6 +105,8 @@ class SvgUri extends Component{
   }
 
   componentWillReceiveProps (nextProps){
+    console.log("HI DU")
+
     if (nextProps.source) {
       const source = resolveAssetSource(nextProps.source) || {};
       const oldSource = resolveAssetSource(this.props.source) || {};
@@ -260,6 +262,7 @@ class SvgUri extends Component{
 
     // Process the xml node
     const arrayElements = [];
+    
 
     // if have children process them.
     // Recursive function.

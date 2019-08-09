@@ -242,7 +242,8 @@ class SvgUri extends Component{
     if (this.state.fill && this.props.fillAll) {
       styleAtts.fill = this.state.fill;
     }
-    console.log("")
+    
+    console.log("STYLEDICT", styleDict)
     Array.from(attributes).forEach(({nodeName, nodeValue}) => {
       console.log("NODENAME:", nodeName, "Must be class")
       if (nodeName === 'class'){

@@ -163,7 +163,7 @@ class SvgUri extends Component{
     this.trimElementChilden(childs);
     let componentAtts = {};
     let style = []
-    const styleDict = {}
+    styleDict ? null : styleDict = {}
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 

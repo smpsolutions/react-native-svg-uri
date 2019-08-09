@@ -173,6 +173,7 @@ class SvgUri extends Component{
           element && element[0] !== "" ? styleDict[element[0]] = element[1] : null
       });
       console.log("STYLE", styleDict)
+      return null
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, styleDict, SVG_ATTS);
       if (this.props.width) {

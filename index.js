@@ -270,6 +270,9 @@ class SvgUri extends Component{
         acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
         return acc
       }, {});
+    if( externalStyleAtts === {}) {
+      console.log("feeeck")
+    }
     Object.assign(componentAtts, styleAtts, externalStyleAtts);
 
     return componentAtts;

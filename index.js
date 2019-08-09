@@ -166,14 +166,14 @@ class SvgUri extends Component{
     let style = []
     const i = ind++;
     switch (node.nodeName) {
-    /*case 'style': 
+    case 'style': 
       style = node.firstChild.data.split(".").map(x => x.replace(";}", "").replace("fill:","").split("{"));
       style.forEach(element => {
         console.log(element)
           element && element[0] !== "" ? styleDict[element[0]] = element[1] : null
       });
       console.log("STYLE", styleDict)
-      return null*/
+      return null
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, styleDict, SVG_ATTS);
       if (this.props.width) {
@@ -255,7 +255,7 @@ class SvgUri extends Component{
         }
         console.log("ExternalStyleAtts:", externalStyleAtts)
       }
-      
+
       Object.assign(styleAtts, utils.transformStyle({
         nodeName,
         nodeValue,

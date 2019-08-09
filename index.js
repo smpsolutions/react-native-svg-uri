@@ -162,11 +162,11 @@ class SvgUri extends Component{
   createSVGElement(node, childs){
     this.trimElementChilden(childs);
     let componentAtts = {};
-    let style = {}
+    let style = []
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 
-      style = node.firstChild.data
+      style = node.firstChild.data.split(".")
       console.log("STYLE", style)
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, SVG_ATTS);

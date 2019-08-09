@@ -45,7 +45,6 @@ const ACCEPTED_SVG_ELEMENTS = [
 // Attributes from SVG elements that are mapped directly.
 const SVG_ATTS = ['viewBox', 'width', 'height'];
 const G_ATTS = ['id'];
-const STYLE_ATTS = ['fill', 'className']
 const CIRCLE_ATTS = ['cx', 'cy', 'r'];
 const PATH_ATTS = ['d'];
 const RECT_ATTS = ['width', 'height'];
@@ -167,7 +166,7 @@ class SvgUri extends Component{
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 
-      style = this.obtainComponentAtts(node, STYLE_ATTS)
+      style = node.firstChild.data
       console.log("STYLE", style)
     case 'svg':
       componentAtts = this.obtainComponentAtts(node, SVG_ATTS);

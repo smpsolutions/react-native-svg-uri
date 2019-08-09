@@ -64,6 +64,7 @@ const COMMON_ATTS = ['fill', 'fillOpacity', 'stroke', 'strokeWidth', 'strokeOpac
     'strokeDasharray', 'strokeDashoffset', 'x', 'y', 'rotate', 'scale', 'origin', 'originX', 'originY', 'transform', 'clipPath'];
 
 let ind = 0;
+const styleDict = {}
 
 function fixYPosition (y, node) {
   if (node.attributes) {
@@ -163,7 +164,6 @@ class SvgUri extends Component{
     this.trimElementChilden(childs);
     let componentAtts = {};
     let style = []
-    styleDict ? null : styleDict = {}
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 

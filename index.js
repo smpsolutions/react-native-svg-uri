@@ -164,7 +164,6 @@ class SvgUri extends Component{
     this.trimElementChilden(childs);
     let componentAtts = {};
 
-    console.log("COMP", componentAtts)
     const i = ind++;
     switch (node.nodeName) {
     case 'svg':
@@ -179,9 +178,13 @@ class SvgUri extends Component{
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, G_ATTS);
+      console.log("COMP", componentAtts)
+
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, PATH_ATTS);
+      console.log("COMP", componentAtts)
+
       return <Path key={i} {...componentAtts}>{childs}</Path>;
     case 'circle':
       componentAtts = this.obtainComponentAtts(node, CIRCLE_ATTS);

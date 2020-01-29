@@ -200,6 +200,7 @@ class SvgUri extends Component{
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
+      console.log(componentAtts)
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);

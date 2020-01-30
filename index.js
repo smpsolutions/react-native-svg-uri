@@ -288,13 +288,12 @@ class SvgUri extends Component{
           } else {
             const nodo = this.inspectNode(node.childNodes[i]);
             if (nodo != null) {
-              console.log(nodo)
               arrayElements.push(nodo);
             }
           }
         }
     }
-
+    console.log(arrayElements)
     return this.createSVGElement(node, arrayElements);
   }
 

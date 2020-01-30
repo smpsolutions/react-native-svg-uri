@@ -293,9 +293,7 @@ class SvgUri extends Component{
           }
         }
     }
-    for (element in arrayElements) {
-      console.log(element)
-    }
+
     return this.createSVGElement(node, arrayElements);
   }
 
@@ -311,7 +309,7 @@ class SvgUri extends Component{
       ).replace(/<!-(.*?)->/g, '');
 
       const doc = new xmldom.DOMParser().parseFromString(inputSVG);
-
+      console.log(doc)
       const rootSVG = this.inspectNode(doc.childNodes[0]);
       console.log(rootSVG)
 

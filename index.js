@@ -205,11 +205,11 @@ class SvgUri extends Component{
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
-      console.log(componentAtts)
+      console.log("LinaearGradient: ", componentAtts)
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);
-      console.log("radialGradient: ", componentAtts)
+      console.log("RadialGradient: ", componentAtts)
       return <RadialGradient key={i} {...componentAtts}>{childs}</RadialGradient>;
     case 'stop':
       componentAtts = this.obtainComponentAtts(node, styleDict, STOP_ATTS);

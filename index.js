@@ -178,23 +178,28 @@ class SvgUri extends Component{
       if (this.props.height) {
         componentAtts.height = this.props.height;
       }
+      console.log("SVG: ", componentAtts)
 
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, styleDict, G_ATTS);
-
+      console.log("G: ", componentAtts)
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, styleDict, PATH_ATTS);
+      console.log("Path: ", componentAtts)
       return <Path key={i} {...componentAtts}>{childs}</Path>;
     case 'circle':
       componentAtts = this.obtainComponentAtts(node, styleDict, CIRCLE_ATTS);
+      console.log("Circle: ", componentAtts)
       return <Circle key={i} {...componentAtts}>{childs}</Circle>;
     case 'rect':
       componentAtts = this.obtainComponentAtts(node, styleDict, RECT_ATTS);
+      console.log("Rect: ", componentAtts)
       return <Rect key={i} {...componentAtts}>{childs}</Rect>;
     case 'line':
       componentAtts = this.obtainComponentAtts(node, styleDict, LINE_ATTS);
+      console.log("Rect: ", componentAtts)
       return <Line key={i} {...componentAtts}>{childs}</Line>;
     case 'defs':
       return <Defs key={i}>{childs}</Defs>;
@@ -204,27 +209,34 @@ class SvgUri extends Component{
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);
+      console.log("radialGradient: ", componentAtts)
       return <RadialGradient key={i} {...componentAtts}>{childs}</RadialGradient>;
     case 'stop':
       componentAtts = this.obtainComponentAtts(node, styleDict, STOP_ATTS);
+      console.log("Stop: ", componentAtts)
       return <Stop key={i} {...componentAtts}>{childs}</Stop>;
     case 'ellipse':
       componentAtts = this.obtainComponentAtts(node, styleDict, ELLIPSE_ATTS);
+      console.log("Ellipse: ", componentAtts)
       return <Ellipse key={i} {...componentAtts}>{childs}</Ellipse>;
     case 'polygon':
       componentAtts = this.obtainComponentAtts(node, styleDict, POLYGON_ATTS);
+      console.log("Polygon: ", componentAtts)
       return <Polygon key={i} {...componentAtts}>{childs}</Polygon>;
     case 'polyline':
       componentAtts = this.obtainComponentAtts(node, styleDict, POLYLINE_ATTS);
+      console.log("Polyline: ", componentAtts)
       return <Polyline key={i} {...componentAtts}>{childs}</Polyline>;
     case 'text':
       componentAtts = this.obtainComponentAtts(node, styleDict, TEXT_ATTS);
+      console.log("Text: ", componentAtts)
       return <Text key={i} {...componentAtts}>{childs}</Text>;
     case 'tspan':
       componentAtts = this.obtainComponentAtts(node, styleDict, styleDict, TEXT_ATTS);
       if (componentAtts.y) {
         componentAtts.y = fixYPosition(componentAtts.y, node)
       }
+      console.log("TSpan: ", componentAtts)
       return <TSpan key={i} {...componentAtts}>{childs}</TSpan>;
     default:
       return null;
@@ -309,9 +321,7 @@ class SvgUri extends Component{
       ).replace(/<!-(.*?)->/g, '');
 
       const doc = new xmldom.DOMParser().parseFromString(inputSVG);
-      console.log(doc)
       const rootSVG = this.inspectNode(doc.childNodes[0]);
-      console.log(rootSVG.text)
 
       return(
           <View style={this.props.style}>

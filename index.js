@@ -311,7 +311,7 @@ class SvgUri extends Component{
       const doc = new xmldom.DOMParser().parseFromString(inputSVG);
       console.log(doc)
       const rootSVG = this.inspectNode(doc.childNodes[0]);
-      console.log(rootSVG.text())
+      console.log(rootSVG.text)
 
       return(
           <View style={this.props.style}>

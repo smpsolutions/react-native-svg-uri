@@ -178,6 +178,9 @@ class SvgUri extends Component{
       if (this.props.height) {
         componentAtts.height = this.props.height;
       }
+      componentAtts.height="270"
+      componentAtts.width="270"
+
       console.log("SVG: ", componentAtts)
 
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;

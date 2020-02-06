@@ -49,7 +49,7 @@ const CIRCLE_ATTS = ['cx', 'cy', 'r'];
 const PATH_ATTS = ['d'];
 const RECT_ATTS = ['width', 'height'];
 const LINE_ATTS = ['x1', 'y1', 'x2', 'y2'];
-const LINEARG_ATTS = LINE_ATTS.concat(['id', 'gradientUnits']);
+const LINEARG_ATTS = LINE_ATTS.concat(['id', 'gradientUnits', 'xlink:href']);
 const RADIALG_ATTS = CIRCLE_ATTS.concat(['id', 'gradientUnits']);
 const STOP_ATTS = ['offset', 'stopColor'];
 const ELLIPSE_ATTS = ['cx', 'cy', 'rx', 'ry'];
@@ -162,6 +162,7 @@ class SvgUri extends Component{
     this.trimElementChilden(childs);
     let componentAtts = {};
     let style = []
+    let stops = []
     const i = ind++;
     switch (node.nodeName) {
     case 'style': 
@@ -199,12 +200,17 @@ class SvgUri extends Component{
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
+      console.log("Att: ", node.attributes, "Childs: ", childs)
+      if (node.atrributes.indexOf('xlink:href') != -1 && childs === undefined){
+        return <LinearGradient key={i} {...componentAtts}>{...stops}</LinearGradient>
+      }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);
       return <RadialGradient key={i} {...componentAtts}>{childs}</RadialGradient>;
     case 'stop':
       componentAtts = this.obtainComponentAtts(node, styleDict, STOP_ATTS);
+      stops.append(<Stop key={i} {...componentAtts}>{childs}</Stop>)
       return <Stop key={i} {...componentAtts}>{childs}</Stop>;
     case 'ellipse':
       componentAtts = this.obtainComponentAtts(node, styleDict, ELLIPSE_ATTS);

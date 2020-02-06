@@ -212,9 +212,9 @@ class SvgUri extends Component{
       }, {});
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
       console.log("Att: ", node.attributes, "Childs: ", childs, "HREF: ", componentAttsHref)
-      if (componentAttsHref.indexOf('xlink:href') != -1){
-        return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
-      }
+      // if (componentAttsHref{
+      //   return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
+      // }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);

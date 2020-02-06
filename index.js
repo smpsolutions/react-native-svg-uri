@@ -200,9 +200,17 @@ class SvgUri extends Component{
     case 'defs':
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
+      const componentAttsHref =  Array.from(attributes)
+      .map(utils.camelCaseNodeName)
+      .map(utils.removePixelsFromNodeValue)
+      .filter('xlink:href')
+      .reduce((acc, {nodeName, nodeValue}) => {
+        acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
+        return acc
+      }, {});
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
-      console.log("Att: ", node.attributes, "Childs: ", childs)
-      if (node.atrributes.indexOf('xlink:href') != -1){
+      console.log("Att: ", node.attributes, "Childs: ", childs, "HREF: ", componentAttsHref)
+      if (componentAttsHref.indexOf('xlink:href') != -1){
         return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
       }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;

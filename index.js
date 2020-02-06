@@ -162,8 +162,9 @@ class SvgUri extends Component{
     this.trimElementChilden(childs);
     let componentAtts = {};
     let style = []
-    let stops = []
     const i = ind++;
+    let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i} offset="0" stopColor="#6b7baa"></Stop>]
+
     switch (node.nodeName) {
     case 'style': 
       style = node.firstChild.data.split(".").map(x => x.replace(";}", "").replace("fill:","").split("{"));
@@ -210,7 +211,6 @@ class SvgUri extends Component{
       return <RadialGradient key={i} {...componentAtts}>{childs}</RadialGradient>;
     case 'stop':
       componentAtts = this.obtainComponentAtts(node, styleDict, STOP_ATTS);
-      stops.append(<Stop key={i} {...componentAtts}>{childs}</Stop>)
       return <Stop key={i} {...componentAtts}>{childs}</Stop>;
     case 'ellipse':
       componentAtts = this.obtainComponentAtts(node, styleDict, ELLIPSE_ATTS);

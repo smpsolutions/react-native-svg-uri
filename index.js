@@ -292,6 +292,7 @@ class SvgUri extends Component{
         }
     }
     el = this.createSVGElement(node, arrayElements)
+    console.log(el)
     return el;
   }
 

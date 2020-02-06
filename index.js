@@ -203,7 +203,9 @@ class SvgUri extends Component{
       const componentAttsHref =  Array.from(node.attributes)
       .map(utils.camelCaseNodeName)
       .map(utils.removePixelsFromNodeValue)
-      .filter('xlink:href')
+      .filter(() =>  {
+        utils.getEnabledAttributes(enabledAttributes.concat('xlink:href'))
+      })
       .reduce((acc, {nodeName, nodeValue}) => {
         acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
         return acc

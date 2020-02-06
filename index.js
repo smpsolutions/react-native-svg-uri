@@ -201,7 +201,7 @@ class SvgUri extends Component{
     case 'linearGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
       console.log("Att: ", node.attributes, "Childs: ", childs)
-      if (node.atrributes.indexOf('xlink:href') != -1 && childs === undefined){
+      if (node.atrributes.indexOf('xlink:href') != -1){
         return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
       }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;

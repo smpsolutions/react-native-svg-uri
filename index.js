@@ -163,7 +163,7 @@ class SvgUri extends Component{
     let componentAtts = {};
     let style = []
     const i = ind++;
-    // let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i} offset="0.75" stopColor="#a4c1e5"></Stop>]
+    let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i} offset="0.75" stopColor="#a4c1e5"></Stop>]
 
     switch (node.nodeName) {
     case 'style': 
@@ -210,11 +210,10 @@ class SvgUri extends Component{
       //   acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
       //   return acc
       // }, {});
-      // componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
-      // console.log("Att: ", node.attributes, "Childs: ", childs, "HREF: ", componentAtts['xlink:href'])
-      // if (componentAtts['xlink:href']){
-      //     return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
-      // }
+      componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
+      if (componentAtts['xlink:href']){
+          return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
+      }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);

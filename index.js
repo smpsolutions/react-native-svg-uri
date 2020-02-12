@@ -163,7 +163,7 @@ class SvgUri extends Component{
     let componentAtts = {};
     let style = []
     const i = ind++;
-    let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i} offset="0.75" stopColor="#a4c1e5"></Stop>]
+    let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i+1} offset="0.75" stopColor="#a4c1e5"></Stop>]
 
     switch (node.nodeName) {
     case 'style': 
@@ -212,6 +212,9 @@ class SvgUri extends Component{
       // }, {});
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
       if (componentAtts['xlink:href']){
+          ind += 2
+          i = ind++
+
           return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
       }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;

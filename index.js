@@ -49,9 +49,9 @@ const CIRCLE_ATTS = ['cx', 'cy', 'r'];
 const PATH_ATTS = ['d'];
 const RECT_ATTS = ['width', 'height'];
 const LINE_ATTS = ['x1', 'y1', 'x2', 'y2'];
-const LINEARG_ATTS = LINE_ATTS.concat(['id', 'gradientUnits', 'xlink:href']);
+const LINEARG_ATTS = LINE_ATTS.concat(['id', 'gradientUnits']);
 const RADIALG_ATTS = CIRCLE_ATTS.concat(['id', 'gradientUnits']);
-const STOP_ATTS = ['offset', 'stopColor'];
+const STOP_ATTS = ['offset'];
 const ELLIPSE_ATTS = ['cx', 'cy', 'rx', 'ry'];
 
 const TEXT_ATTS = ['fontFamily', 'fontSize', 'fontWeight', 'textAnchor']
@@ -163,8 +163,6 @@ class SvgUri extends Component{
     let componentAtts = {};
     let style = []
     const i = ind++;
-    let stops = [<Stop key={i} offset="0" stopColor="#6b7baa"></Stop>, <Stop key={i} offset="0" stopColor="#6b7baa"></Stop>]
-
     switch (node.nodeName) {
     case 'style': 
       style = node.firstChild.data.split(".").map(x => x.replace(";}", "").replace("fill:","").split("{"));
@@ -184,6 +182,7 @@ class SvgUri extends Component{
       return <Svg key={i} {...componentAtts}>{childs}</Svg>;
     case 'g':
       componentAtts = this.obtainComponentAtts(node, styleDict, G_ATTS);
+
       return <G key={i} {...componentAtts}>{childs}</G>;
     case 'path':
       componentAtts = this.obtainComponentAtts(node, styleDict, PATH_ATTS);
@@ -200,21 +199,7 @@ class SvgUri extends Component{
     case 'defs':
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
-      // const componentAttsHref =  Array.from(node.attributes)
-      // .map(utils.camelCaseNodeName)
-      // .map(utils.removePixelsFromNodeValue)
-      // .filter(() =>  {
-      //   utils.getEnabledAttributes('xlink:href')
-      // })
-      // .reduce((acc, {nodeName, nodeValue}) => {
-      //   acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
-      //   return acc
-      // }, {});
       componentAtts = this.obtainComponentAtts(node, styleDict, LINEARG_ATTS);
-      console.log("Att: ", node.attributes, "Childs: ", childs, "HREF: ", componentAtts['xlink:href'])
-      if (componentAtts['xlink:href']){
-          return <LinearGradient key={i} {...componentAtts}>{stops[0]}{stops[1]}</LinearGradient>
-      }
       return <LinearGradient key={i} {...componentAtts}>{childs}</LinearGradient>;
     case 'radialGradient':
       componentAtts = this.obtainComponentAtts(node, styleDict, RADIALG_ATTS);
@@ -307,9 +292,8 @@ class SvgUri extends Component{
           }
         }
     }
-    el = this.createSVGElement(node, arrayElements)
-    console.log(el)
-    return el;
+
+    return this.createSVGElement(node, arrayElements);
   }
 
   render () {
@@ -324,8 +308,8 @@ class SvgUri extends Component{
       ).replace(/<!-(.*?)->/g, '');
 
       const doc = new xmldom.DOMParser().parseFromString(inputSVG);
+
       const rootSVG = this.inspectNode(doc.childNodes[0]);
-  
 
       return(
           <View style={this.props.style}>

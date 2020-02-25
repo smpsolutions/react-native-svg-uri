@@ -200,7 +200,7 @@ class SvgUri extends Component{
     case 'defs':
       return <Defs key={i}>{childs}</Defs>;
     case 'linearGradient':
-      const componentAttsHref =  Array.from(attributes)
+      const componentAttsHref =  Array.from(node.attributes)
       .map(utils.camelCaseNodeName)
       .map(utils.removePixelsFromNodeValue)
       .filter('xlink:href')
